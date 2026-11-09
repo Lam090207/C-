@@ -1,71 +1,215 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
-#include <stdlib.h>
-#include <time.h>
+//#include <stdlib.h>
+//#include <time.h>
 void main() {
-	int mat_khau = 12345678;
-	int so_du = 200000;
-	int mat_khau_user = 0;
-	int step = 1;
-	int so_tien_rut = 0;
-	char ky_tu = 0;
-	int count = 0;
-	while (step != 0) {
-		switch (step) {
-		case 1:
-			printf("Quy khach vui long nhap mat khau: "); scanf("%d", &mat_khau_user);
-			if (mat_khau_user == mat_khau) {
-				step = 2;
-			}
-			else if (mat_khau_user != mat_khau) {
-				count += 1;
-				if (count >= 3) {
-					step = 5;
-				}
-			}
-			else {
-				step = 6;
-			}
-			break;
-		case 2:
-			printf("Nhap so tien muon rut: "); scanf("%d", &so_tien_rut);
-			step = 3;
-			break;
-		case 3:
-			if (so_tien_rut > so_du) {
-				step = 2;
-				printf("SO DU CUA QUY KHACH KHONG DU, VUI LONG NHAP LAI!\n");
-			}
-			else
-			{
-				step = 4;
-			}
-			break;
-		case 4:
-			printf("So tien quy khach da rut la: %d \n", so_tien_rut);
-			so_du = so_du - so_tien_rut;
-			printf("So tien con lai la:%d \n", so_du);
-			step = 6;
-
-			break;
-		case 5:
-			printf("ket thuc!");
-			step = 0;
-			break;
-		case 6:
-			printf("Quy khach co muon tiep tuc khong? ");
-			scanf(" %c", &ky_tu);
-			if (ky_tu == 'y' || ky_tu == 'Y') {
-				step = 1;
-			}
-			else if (ky_tu == 'N' || ky_tu == 'n'){
-				step = 5;
-			}
+	int du = 0;
+	int a = 0;
+	int b = 0;
+	printf("Bai 6:\n");
+	printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
+	while (1) {
+		du = a % b;
+		if (du != 0) {
+			a = b;
+			b = du;
+		}
+		else {
+			printf(" %d la UCLN cua a va b", b);
+		break;
+		}
+	}
+	printf("\n");
+	printf("Bai 7: \n");
+	printf("Cho phuong trinh f(x) = x ^ 2\n");
+	printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
+	float c = 0;
+	float d = 0;
+	int n = 1000;
+	float h = 0;
+	float tong = 0;
+	h =(float) (b - a) / n;
+	for (int i = 1; i <= n - 1; i++) {
+		tong += (a + i * h) * (a + i * h);
+	}
+	printf("Ket qua tich phan tu a den b cua f(x) la: %f", (h / 2.0) * (a * a + 2.0 * tong + b * b));
+	
+	printf("\n");
+	printf("Bai 8:\n");
+	printf("Nhap vao 2 so nguyen a va b:"); scanf("%d %d", &a, &b);
+	int gtri_a = a;
+	int gtri_b = b;
+	while (1) {
+		du = a % b;
+		if (du != 0) {
+			a = b;
+			b = du;
+		}
+		else {
+			printf("BCNN la : %d", abs((gtri_a * gtri_b) / (b)));
 			break;
 		}
 	}
+	printf("Bai 9:\n");
+	printf("========ATM========");
+	int so_tien_nhap_vao = 0;
+	int k = 0;
+	printf("Nhap vap so tien muon rut: "); scanf("%d", &so_tien_nhap_vao);
+	if (so_tien_nhap_vao % 50000 != 0 || so_tien_nhap_vao <= 0){
+		printf("So tien nhap vao khong hop le, Vui long nhap la so tien la boi so cua 50000!");
+	}
+	int t50 = 0;
+	int t100 = 0;
+	int t200 = 0;
+	int t500 = 0;
+	int con_lai = so_tien_nhap_vao;
+	if (con_lai >= 850000) {
+		t500 = 1;
+		t200 = 1;
+		t100 = 1;
+		t50 = 1;
+		con_lai -= 850000;
+	}
+	t500 += con_lai / 500000;
+	con_lai %= 500000;
+	t200 += con_lai / 200000;
+	con_lai %= 200000;
+	t100 += con_lai / 100000;
+	con_lai %= 100000;
+	t50 += con_lai / 50000;
+	con_lai %= 50000;
+
+	printf("So tien rut duoc la: \n");
+	if (t50 > 0)  printf("%d x 50000\n", t50);
+	if (t100 > 0) printf("%d x 100000\n", t100);
+	if (t200 > 0) printf("%d x 200000\n", t200);
+	if (t500 > 0) printf("%d x 500000\n", t500);
+	
+
 }
+	//int n = 0;
+	//printf("Nhap vao n: "); scanf("%d", &n);
+	//for (int i = 2; i <= n; i++) {
+	//	int kiem_tra_so_nguyen_to = 1;
+	//	for (int z = 2; z <= i / 2; z++) {
+	//		if (i % z == 0) {
+	//			kiem_tra_so_nguyen_to = 0;
+	//			break;
+	//		}
+	//	}
+	//	//printf("cac so nguyen to la: %d\n", i);
+	//	if (kiem_tra_so_nguyen_to) {
+	//		printf("day la so nguyen to: %d\n", i);
+	//	}
+	//	//else {
+	//	//	printf("day khong phai la so nguyen to");
+	//	//}
+	//}
+	//printf("\n");
+	
+	//int n = 0;
+	//int kiem_tra_so_nguyen_to = 1;
+	//printf("nhap vao so n:"); scanf("%d", &n);
+	//if (n < 0) {
+	//	printf("Nhap so lon hon 0!\n");
+	//}
+	//else if (n < 2) {
+	//	printf("%d khong phai la so nguyen to");
+	//}
+	//else {
+	//	for (int i = 1; i <= n/2; i++) { 
+
+	//		if (n % i == 0) {
+	//			kiem_tra_so_nguyen_to = 0;
+	//			break;
+	//		}
+	//	}
+	//	if (kiem_tra_so_nguyen_to) {
+	//			printf("%d day la so nguyen to \n", n);
+	//	}
+	//	else {
+	//			printf("%d day khong la so nguyen to \n", n);
+
+	//	}
+	//}
+	
+	//float so_tien_ban_dau = 0;
+	//float lai_suat = 0;
+	//int so_nam_gui_tien = 0;
+	//float tong = 0;
+	//printf("Nhap vao so tien gui ban dau: "); scanf("%f", &so_tien_ban_dau);
+	//printf("Nhap vao so nam muon gui: "); scanf("%d", &so_nam_gui_tien);
+	//printf("Nhap vao lai suat: "); scanf("%f", &lai_suat);
+	//tong = so_tien_ban_dau;
+	//for (int i = 1; i <= so_nam_gui_tien; i++) {
+	//	tong = tong + (tong * lai_suat / 100);
+	//	printf("so tien nhan dc sau nam thu %d la: %.1f\n", i, tong);
+	//}
+	
+	//int mat_khau = 12345678;
+	//int so_du = 200000;
+	//int mat_khau_user = 0;
+	//int step = 1;
+	//int so_tien_rut = 0;
+	//char ky_tu = 0;
+	//int count = 0;
+	//while (step != 0) {
+	//	switch (step) {
+	//	case 1:
+	//		printf("Quy khach vui long nhap mat khau: "); scanf("%d", &mat_khau_user);
+	//		if (mat_khau_user == mat_khau) {
+	//			step = 2;
+	//		}
+	//		else if (mat_khau_user != mat_khau) {
+	//			count += 1;
+	//			if (count == 4) {
+	//				step = 5;
+	//			}
+	//		}
+	//		else {
+	//			step = 6;
+	//		}
+	//		break;
+	//	case 2:
+	//		printf("Nhap so tien muon rut: "); scanf("%d", &so_tien_rut);
+	//		step = 3;
+	//		break;
+	//	case 3:
+	//		if (so_tien_rut > so_du) {
+	//			step = 2;
+	//			printf("SO DU CUA QUY KHACH KHONG DU, VUI LONG NHAP LAI!\n");
+	//		}
+	//		else
+	//		{
+	//			step = 4;
+	//		}
+	//		break;
+	//	case 4:
+	//		printf("So tien quy khach da rut la: %d \n", so_tien_rut);
+	//		so_du = so_du - so_tien_rut;
+	//		printf("So tien con lai la:%d \n", so_du);
+	//		step = 6;
+
+	//		break;
+	//	case 5:
+	//		printf("ket thuc!");
+	//		step = 0;
+	//		break;
+	//	case 6:
+	//		printf("Quy khach co muon tiep tuc khong? ");
+	//		scanf(" %c", &ky_tu);
+	//		if (ky_tu == 'y' || ky_tu == 'Y') {
+	//			step = 1;
+	//		}
+	//		else {
+	//			step = 5;
+	//		
+	//		}
+	//		break;
+	//	}
+	//}
+	
 	//srand(time(NULL));
 	//int x = rand() %100;
 	//int n = 0;
