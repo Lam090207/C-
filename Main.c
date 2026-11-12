@@ -1,93 +1,212 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
-//#include <stdlib.h>
-//#include <time.h>
+#include <stdlib.h>
+#include <time.h>
 void main() {
-	int du = 0;
-	int a = 0;
-	int b = 0;
-	printf("Bai 6:\n");
-	printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
-	while (1) {
-		du = a % b;
-		if (du != 0) {
-			a = b;
-			b = du;
+	int arr[100] = {0};
+	int n = 0;
+	printf("bai 5\n");
+	printf("nhap n (1 <= n <= 100): ");
+	scanf("%d", &n);
+	while (n < 1 || n>100) {
+		printf("So nhap khong hop le. Vui long nhap lai!");
+		scanf("%d", &n);
+	}
+	printf("nhap %d phan tu cua mang: \n", n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &arr[i]);
+	}
+	int snt[100];
+	int dem = 0;
+	for (int i = 0; i < n; i++) {
+		int x = arr[i];
+		int la_snt = 1;
+		if (x < 2) {
+			la_snt = 0;
 		}
 		else {
-			printf(" %d la UCLN cua a va b", b);
-		break;
+			for (int j = 2; j * j <= x; j++) {
+				if (x % j == 0) {
+					la_snt = 0;
+					break;
+				}
+			}
 		}
+		if (la_snt == 1) {
+			snt[dem] = x;
+			dem++;
+		}
+	}
+	if (dem == 0) {
+		printf("khong co so nguyen to!");
+	}
+	else {
+		printf("Cac so nguyen to la:");
+		for (int i = 0; i < dem; i++) {
+			printf("%d ", snt[i]);
+		}
+		printf("\nSo luong: %d\n", dem);
 	}
 	printf("\n");
-	printf("Bai 7: \n");
-	printf("Cho phuong trinh f(x) = x ^ 2\n");
-	printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
-	float c = 0;
-	float d = 0;
-	int n = 1000;
-	float h = 0;
-	float tong = 0;
-	h =(float) (b - a) / n;
-	for (int i = 1; i <= n - 1; i++) {
-		tong += (a + i * h) * (a + i * h);
-	}
-	printf("Ket qua tich phan tu a den b cua f(x) la: %f", (h / 2.0) * (a * a + 2.0 * tong + b * b));
-	
-	printf("\n");
-	printf("Bai 8:\n");
-	printf("Nhap vao 2 so nguyen a va b:"); scanf("%d %d", &a, &b);
-	int gtri_a = a;
-	int gtri_b = b;
-	while (1) {
-		du = a % b;
-		if (du != 0) {
-			a = b;
-			b = du;
-		}
-		else {
-			printf("BCNN la : %d", abs((gtri_a * gtri_b) / (b)));
-			break;
-		}
-	}
-	printf("Bai 9:\n");
-	printf("========ATM========");
-	int so_tien_nhap_vao = 0;
-	int k = 0;
-	printf("Nhap vap so tien muon rut: "); scanf("%d", &so_tien_nhap_vao);
-	if (so_tien_nhap_vao % 50000 != 0 || so_tien_nhap_vao <= 0){
-		printf("So tien nhap vao khong hop le, Vui long nhap la so tien la boi so cua 50000!");
-	}
-	int t50 = 0;
-	int t100 = 0;
-	int t200 = 0;
-	int t500 = 0;
-	int con_lai = so_tien_nhap_vao;
-	if (con_lai >= 850000) {
-		t500 = 1;
-		t200 = 1;
-		t100 = 1;
-		t50 = 1;
-		con_lai -= 850000;
-	}
-	t500 += con_lai / 500000;
-	con_lai %= 500000;
-	t200 += con_lai / 200000;
-	con_lai %= 200000;
-	t100 += con_lai / 100000;
-	con_lai %= 100000;
-	t50 += con_lai / 50000;
-	con_lai %= 50000;
+	printf("bai 6\n");
 
-	printf("So tien rut duoc la: \n");
-	if (t50 > 0)  printf("%d x 50000\n", t50);
-	if (t100 > 0) printf("%d x 100000\n", t100);
-	if (t200 > 0) printf("%d x 200000\n", t200);
-	if (t500 > 0) printf("%d x 500000\n", t500);
-	
+	printf("Nhap vao n (1<=n<=100): ");
+	scanf("%d", &n);
+	while (n < 1 || n > 100) {
+		printf("So nhap khong hop le. Vui long nhap lai!");
+		scanf("%d", &n);
+	}
+	printf("Nhap %d gia tri cua mang: \n", n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &arr[i]);
+	}
+	for (int i = 0; i < n / 2; i++) {
+		int j = n - 1 - i;
+		int dao = arr[i];
+		arr[i] = arr[j];
+		arr[j] = dao;
+	}
+	printf("Mang sau khi dao nguoc:\n ");
+	for (int i = 0; i < n; i++) {
+		printf("%d ", arr[i]);
+	}
+
+	printf("\n");
+
+	printf("\nBai 7.\n");
+	printf("Nhap vao n (1 <= n <= 100): "); scanf("%d", &n);
+	while (n < 1 || n >100) {
+		printf("So ban nhap khong hop le, vui long nhap lai!");
+		scanf("%d", &n);
+	}
+	printf("Nhap %d gia tri cua mang: ", n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &arr[i]);
+	}
+	int x = 0;
+	printf("nhap so nguyen x can tim: "); scanf("%d", &x);
+	int lst[100];
+	int k = 0;	
+	for (int i = 0; i < n; i++) {
+		
+		if (arr[i] == x) {
+			lst[k] = i+1;
+			k++;
+		}
+	}
+	for (int i = 0; i < k; i++) {
+		printf(" %d\n",lst[i]);
+	}
+
+
 
 }
+	//int arr[] = { 4,9,2,-1,7 };
+	//int max = arr[0];
+	//int min = arr[0];
+	//int len = sizeof(arr) / sizeof(arr[0]);
+	//for (int i = 0; i < len; i++) {
+	//	if (arr[i] > max) {
+	//		max = arr[i];
+	//	}
+	//	if (min > arr[i]) {
+	//		min = arr[i];
+	//	}
+	//}
+	//printf("so lon nhat la: %d\n", max);
+	//printf("so be nhat la: %d\n", min);
+	
+//	int arr[] = { 2,4,6,8,10 };
+//	int tong = 0;
+//	int len = sizeof(arr) / sizeof(arr[0]);
+//	for (int i = 0; i < len; i++) {
+//		tong += arr[i];
+//	}
+//	printf("tong cac phan tu trong mang la: %d\n", tong);
+//	printf("TBC cac phan tu trong mang la: %.f", (float)tong / len);
+	//int du = 0;
+	//int a = 0;
+	//int b = 0;
+	//printf("Bai 6:\n");
+	//printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
+	//while (1) {
+	//	du = a % b;
+	//	if (du != 0) {
+	//		a = b;
+	//		b = du;
+	//	}
+	//	else {
+	//		printf(" %d la UCLN cua a va b", b);
+	//	break;
+	//	}
+	//}
+	//printf("\n");
+	//printf("Bai 7: \n");
+	//printf("Cho phuong trinh f(x) = x ^ 2\n");
+	//printf("Nhap vao 2 so nguyen a va b: "); scanf("%d %d", &a, &b);
+	//float c = 0;
+	//float d = 0;
+	//int n = 1000;
+	//float h = 0;
+	//float tong = 0;
+	//h =(float) (b - a) / n;
+	//for (int i = 1; i <= n - 1; i++) {
+	//	tong += (a + i * h) * (a + i * h);
+	//}
+	//printf("Ket qua tich phan tu a den b cua f(x) la: %f", (h / 2.0) * (a * a + 2.0 * tong + b * b));
+	//
+	//printf("\n");
+	//printf("Bai 8:\n");
+	//printf("Nhap vao 2 so nguyen a va b:"); scanf("%d %d", &a, &b);
+	//int gtri_a = a;
+	//int gtri_b = b;
+	//while (1) {
+	//	du = a % b;
+	//	if (du != 0) {
+	//		a = b;
+	//		b = du;
+	//	}
+	//	else {
+	//		printf("BCNN la : %d", abs((gtri_a * gtri_b) / (b)));
+	//		break;
+	//	}
+	//}
+	//printf("Bai 9:\n");
+	//printf("========ATM========");
+	//int so_tien_nhap_vao = 0;
+	//int k = 0;
+	//printf("Nhap vap so tien muon rut: "); scanf("%d", &so_tien_nhap_vao);
+	//if (so_tien_nhap_vao % 50000 != 0 || so_tien_nhap_vao <= 0){
+	//	printf("So tien nhap vao khong hop le, Vui long nhap la so tien la boi so cua 50000!");
+	//}
+	//int t50 = 0;
+	//int t100 = 0;
+	//int t200 = 0;
+	//int t500 = 0;
+	//int con_lai = so_tien_nhap_vao;
+	//if (con_lai >= 850000) {
+	//	t500 = 1;
+	//	t200 = 1;
+	//	t100 = 1;
+	//	t50 = 1;
+	//	con_lai -= 850000;
+	//}
+	//t500 += con_lai / 500000;
+	//con_lai %= 500000;
+	//t200 += con_lai / 200000;
+	//con_lai %= 200000;
+	//t100 += con_lai / 100000;
+	//con_lai %= 100000;
+	//t50 += con_lai / 50000;
+	//con_lai %= 50000;
+
+	//printf("So tien rut duoc la: \n");
+	//if (t50 > 0)  printf("%d x 50000\n", t50);
+	//if (t100 > 0) printf("%d x 100000\n", t100);
+	//if (t200 > 0) printf("%d x 200000\n", t200);
+	//if (t500 > 0) printf("%d x 500000\n", t500);
+	
 	//int n = 0;
 	//printf("Nhap vao n: "); scanf("%d", &n);
 	//for (int i = 2; i <= n; i++) {
